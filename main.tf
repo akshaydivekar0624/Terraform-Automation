@@ -64,7 +64,6 @@ resource "aws_instance" "jenkins" {
 # Elastic IP for Jenkins instance
 resource "aws_eip" "jenkins_eip" {
   instance = aws_instance.jenkins.id
-  vpc      = true
   tags = {
     Name = "jenkins_elastic_ip"
   }
