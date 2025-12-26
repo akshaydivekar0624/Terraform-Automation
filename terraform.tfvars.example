@@ -1,0 +1,11 @@
+# Example terraform.tfvars - copy to terraform.tfvars and fill in sensitive values
+
+# Key pair name to use in AWS (choose a descriptive name)
+key_name = "AD_Linux_Server_Key"
+
+# Public key value (OpenSSH format). Generate from your .pem file and paste the full value here.
+# Example: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDx... user@example.com
+public_key = "ssh-rsa YOUR_PUBLIC_KEY_CONTENT_HERE"
+
+# Allow Terraform to create/import the key in AWS when set to true
+create_key_pair = true

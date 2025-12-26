@@ -49,3 +49,15 @@ variable "tags" {
         terraform   = "true"
     }
 }
+
+variable "public_key" {
+  description = "Public SSH key (OpenSSH format) to import into AWS for the EC2 instance."
+  type        = string
+  default     = ""
+}
+
+variable "create_key_pair" {
+  description = "Whether to import/create the SSH key pair in AWS."
+  type        = bool
+  default     = true
+}

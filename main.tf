@@ -43,10 +43,17 @@ resource "aws_security_group" "jenkins-sg-2022" {
 }
 
 
+# Import or create SSH key pair (optional)
+resource "aws_key_pair" "jenkins_key" {
+  count      = var.create_key_pair && var.public_key != "" ? 1 : 0
+  key_name   = var.key_name
+  public_key = var.public_key
+}
+
 # Jenkins EC2 instance
 resource "aws_instance" "jenkins" {
   ami           = var.ami_id
-  key_name      = var.key_name
+  key_name      = length(aws_key_pair.jenkins_key) > 0 ? var.key_name : null
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.jenkins-sg-2022.id]
 
