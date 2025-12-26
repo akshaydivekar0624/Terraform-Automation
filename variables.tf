@@ -49,3 +49,8 @@ variable "tags" {
         terraform   = "true"
     }
 }
+
+variable "tag_name2" {
+    description = "Tag Name for second EC2 instance"
+    default     = "my-ec2-instance-2"
+}
