@@ -1,11 +1,11 @@
 variable "aws_region" {
        description = "The AWS region to create things in." 
-       default     = "us-east-1" 
+       default     = "ap-south-1" 
 }
 
 variable "key_name" { 
     description = " SSH keys to connect to ec2 instance" 
-    default     =  "AD_Linux_Server_Key" 
+    default     =  "jenkins-ap-south-1" 
 }
 
 variable "instance_type" { 
@@ -15,7 +15,7 @@ variable "instance_type" {
 
 variable "security_group" { 
     description = "Name of security group" 
-    default     = "jenkins-sgroup-dec-2021-v2" 
+    default     = "jenkins-sgroup-dec-2021" 
 }
 
 variable "tag_name" { 
@@ -48,9 +48,4 @@ variable "tags" {
         environment = "DEV"
         terraform   = "true"
     }
-}
-
-variable "tag_name2" {
-    description = "Tag Name for second EC2 instance"
-    default     = "my-ec2-instance-2"
 }

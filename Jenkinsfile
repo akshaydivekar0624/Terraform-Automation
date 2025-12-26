@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        TF_VAR_aws_region = 'ap-south-1'
-    }
 
     parameters {
         choice(
@@ -11,22 +8,11 @@ pipeline {
             description: 'Select the action to perform'
         )
     }
+
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/REQ00112233']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/akshaydivekar0624/Terraform-Automation.git']])
-            }
-        }
-
-        stage('Debug env') {
-            steps {
-                sh '''
-                    echo "AWS_REGION=$AWS_REGION"
-                    echo "AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION"
-                    echo "TF_VAR_aws_region=$TF_VAR_aws_region"
-                    echo "TF_VAR_key_name=$TF_VAR_key_name"
-                    env | sort | egrep "AWS|TF_VAR" || true
-                '''
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/akshaydivekar0624/Terraform-Automation.git']])
             }
         }
     
