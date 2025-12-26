@@ -41,58 +41,31 @@ resource "aws_security_group" "jenkins-sg-2022" {
     Name = var.security_group
   }
 }
-/*
-resource "aws_instance" "myFirstInstance" {
-  ami           = var.ami_id
-  key_name = var.key_name
-  instance_type = var.instance_type
-  vpc_security_group_ids = [aws_security_group.jenkins-sg-2022.id]
 
-  # Set root volume size to 20 GB
-  root_block_device {
-    volume_size = 20
-    volume_type = "gp3"
-    delete_on_termination = true
-  }
 
-  tags= {
-    Name = var.tag_name
-  }
-}
-
-# Create Elastic IP address
-resource "aws_eip" "myFirstInstance" {
- // vpc      = true
-  instance = aws_instance.myFirstInstance.id
-tags= {
-    Name = "my_elastic_ip"
-  }
-}
-
-# Second EC2 instance
-resource "aws_instance" "mySecondInstance" {
+# Jenkins EC2 instance
+resource "aws_instance" "jenkins" {
   ami           = var.ami_id
   key_name      = var.key_name
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.jenkins-sg-2022.id]
 
-  # Set root volume size to 20 GB
   root_block_device {
     volume_size = 20
     volume_type = "gp3"
     delete_on_termination = true
   }
 
-  tags= {
-    Name = var.tag_name2
+  tags = {
+    Name = var.tag_name
   }
 }
 
-# Elastic IP for second instance
-resource "aws_eip" "mySecondInstance" {
-  instance = aws_instance.mySecondInstance.id
-  tags= {
-    Name = "my_second_elastic_ip"
+# Elastic IP for Jenkins instance
+resource "aws_eip" "jenkins_eip" {
+  instance = aws_instance.jenkins.id
+  vpc      = true
+  tags = {
+    Name = "jenkins_elastic_ip"
   }
 }
-*/
